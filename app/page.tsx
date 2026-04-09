@@ -149,10 +149,10 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden mesh-gradient">
         {/* Background decorative elements */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/5 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div 
@@ -176,11 +176,24 @@ export default function Home() {
               I help high-growth startups and B2B companies dominate their markets through sophisticated paid advertising, strategic content, and meticulous optimization.
             </p>
             <div className="flex flex-col sm:flex-row gap-5">
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-10 h-14 text-lg font-medium shadow-xl shadow-accent/20">
-                Start a Project
-              </Button>
-              <Button size="lg" variant="outline" className="rounded-full px-10 h-14 text-lg font-medium border-2">
-                View My Success Stories
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-10 h-14 text-lg font-bold shadow-xl shadow-accent/20 group relative overflow-hidden">
+                  <span className="relative z-10 flex items-center gap-2">
+                    Start a Project <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <motion.div 
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0 bg-white/20 skew-x-12"
+                  />
+                </Button>
+              </motion.div>
+              <Button size="lg" variant="outline" className="rounded-full px-10 h-14 text-lg font-medium border-2 hover:bg-secondary">
+                View Success Stories
               </Button>
             </div>
             
@@ -231,27 +244,37 @@ export default function Home() {
             <motion.div 
                animate={{ y: [0, 20, 0] }}
                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-               className="absolute -bottom-10 -left-10 glass p-6 rounded-2xl z-20 shadow-2xl border border-white/20"
+               className="absolute -bottom-6 -left-10 glass p-5 rounded-3xl z-20 shadow-2xl border border-white/20 max-w-[200px]"
             >
-               <div className="flex -space-x-3 mb-3">
+               <div className="flex -space-x-2 mb-3">
                   {[1,2,3,4].map(i => (
-                    <div key={i} className="w-8 h-8 rounded-full border-2 border-background bg-secondary flex items-center justify-center overflow-hidden">
-                        <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="User" />
+                    <div key={i} className="w-10 h-10 rounded-full border-2 border-background bg-secondary shadow-lg overflow-hidden translate-y-0 hover:-translate-y-1 transition-transform cursor-pointer">
+                        <img src={`https://i.pravatar.cc/100?img=${i+20}`} alt="Success Client" className="w-full h-full object-cover" />
                     </div>
                   ))}
                </div>
-               <div className="text-sm font-bold leading-tight">Trusted by <br /> 50+ Global Brands</div>
+               <div className="text-sm font-bold leading-tight mb-1">Trusted by 50+</div>
+               <div className="text-[10px] text-muted-foreground uppercase font-bold tracking-tighter">Global Enterprise Brands</div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Logo Cloud / Social Proof */}
-      <section className="py-12 border-y border-border/50 bg-secondary/30">
-        <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center opacity-50 grayscale gap-8 px-12">
-            {['Microsoft', 'Coinbase', 'Shopify', 'Airbnb', 'Notion', 'Slack'].map(logo => (
-                <div key={logo} className="font-display font-black text-2xl tracking-tighter">{logo}</div>
-            ))}
+      <section className="py-16 border-y border-border/50 bg-secondary/20 relative overflow-hidden group">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-[10px] uppercase tracking-[0.3em] font-bold text-muted-foreground mb-10">Trusted by Global Industry Leaders</p>
+          <div className="flex flex-wrap justify-center md:justify-between items-center gap-12 md:gap-8 opacity-40 grayscale group-hover:opacity-60 transition-opacity">
+              {['Microsoft', 'Coinbase', 'Shopify', 'Airbnb', 'Notion', 'Slack'].map(logo => (
+                  <motion.div 
+                    key={logo} 
+                    whileHover={{ scale: 1.1, filter: 'grayscale(0%)', opacity: 1 }}
+                    className="font-display font-black text-3xl tracking-tighter cursor-pointer transition-all"
+                  >
+                    {logo}
+                  </motion.div>
+              ))}
+          </div>
         </div>
       </section>
 
